@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Headmaster Administration Panel</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="hm-backdrop" class="hm-backdrop">
+      <div class="hm-shell" role="dialog" aria-modal="true" aria-label="Headmaster Administration Panel">
+        <header class="hm-header">
+          <div class="hm-brand">
+            <h1>Headmaster Console</h1>
+            <span id="hm-actor-meta" class="hm-meta"></span>
+          </div>
+          <nav class="hm-tabs" id="hm-tabs">
+            <button type="button" data-tab="players" class="hm-tab active">Players</button>
+            <button type="button" data-tab="houses" class="hm-tab">Houses & Cup</button>
+            <button type="button" data-tab="spells" class="hm-tab">Spells</button>
+            <button type="button" data-tab="world" class="hm-tab">World & Server</button>
+            <button type="button" data-tab="staff" class="hm-tab">Staff & Audit</button>
+          </nav>
+          <div class="hm-header-actions">
+            <button type="button" id="hm-refresh" class="hm-btn-secondary">Refresh</button>
+            <button type="button" id="hm-close" class="hm-btn-close">Close (Esc)</button>
+          </div>
+        </header>
+
+        <div id="hm-toast" class="hm-toast hidden" role="status"></div>
+
+        <main class="hm-body" id="hm-body"></main>
+      </div>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,32 +1,47 @@
-<p align="center">
-  <img src="./hmp-headmaster-logo.jpg" alt="hmp-headmaster logo" width="220" />
-</p>
+# hmp-headmaster — Hogwarts Headmaster Administration System
 
-<h1 align="center">hmp-headmaster</h1>
+Production-ready administration panel for **ArcaneMP (HogwartsMP Foundations)** powered by **Discord ID** authorization — engineered to run cleanly alongside Foundations' built-in `hmp-admin` without resource name collisions.
 
-<p align="center">
-  <strong>Production-Ready Hogwarts Headmaster Administration Panel for ArcaneMP Foundations</strong><br />
-  Discord-ID RBAC · Live Moderation & Bans · Gringotts & Purse Economy · House Cup & Force Re-Sort · Spells, Brooms & World Control
-</p>
+## Root Admin Configuration (Required Before First Use)
 
----
+No third-party Discord IDs are baked into this resource. Configure your server owner / co-owner Discord IDs using either option below:
 
-## ✨ Highlights
+1. **Before exporting (Workbench Configurator)**: Enter your 17–20 digit **Primary Root Admin Discord ID** (and any co-owners) in the Headmaster Configurator so it is pre-written to `data/hmp-headmaster.json`.
+2. **After installing on your server**:
+   - Join the server and run `/hm myid` in chat to print your detected 17–20 digit Discord ID.
+   - Open `data/hmp-headmaster.json` and add your ID inside `"rootAdminDiscordIds": ["YOUR_DISCORD_ID"]`.
+   - Restart `hmp-headmaster` (or the server).
 
-- **Discord-ID Role Hierarchy (4 Tiers)** — Protected **Root Admin (Grade 4)** via `data/hmp-headmaster.json`, plus persistent **Headmaster (3)**, **Professor (2)**, and **Prefect (1)** staff stored in `data/hmp-headmaster-staff.json` (with optional `hmp-core` admin sync).
-- **Zero-Collision Architecture** — Built to run cleanly alongside Foundations' `hmp-admin` without command or resource name conflicts.
-- **Players & Moderation** — Live roster search, Go To / Bring, Hogwarts landmarks & X/Y/Z teleports, Freeze/Unfreeze (`hmp-lib` input lock), Revive, Owl-Post Notices, Warnings, Kick, and online/offline **timed or permanent Discord-ID Bans** (`data/hmp-headmaster-bans.json`).
-- **Economy, Brooms & Gear** — Credit or deduct **Gringotts Vault** (`hmp-banking`) and **Coin Purse** (`native:galleons`), grant flying brooms and Hogwarts outfits via `hmp-inventory`.
-- **Houses & House Cup** — Live House Cup standings, global broadcast point awards, manual House assignment/clearing, and **Force Re-Sort** (`hmp-houses` + `hmp-sorting`).
-- **Spells & Curriculum** — Live searchable spell catalog, single-spell grant/revoke, one-click curriculum packs, and grant clearing (`hmp-spells`).
-- **World, PvP & Audit Log** — Weather profiles, seasons, time presets, world reset, server announcements (`hmp-world` + `hmp-pvp`), and bounded JSON audit logs (`data/hmp-headmaster-audit.json`).
-- **Optional Bridges** — Auto-integrates with `dg-notify` (custom HUD alerts) and `dg-discord` (Discord audit webhooks) with no extra config.
+> **Note**: `rootAdminDiscordIds` is currently empty in `data/hmp-headmaster.json`. Add your Discord ID before granting in-game staff roles.
 
----
+Configured Root Admins are protected from in-game demotion, freezes, kicks, and bans, and automatically sync with `hmp-core` `admin` (Grade 4) when `syncCoreAdminGroup` is enabled.
 
-## 📦 Installation
+## Role Hierarchy (RBAC)
 
-1. Download the release archive and extract **directly into your ArcaneMP server root** so you have:
+| Role | Grade | Capabilities |
+| :--- | :---: | :--- |
+| **Root Admin** | 4 | Configured via `data/hmp-headmaster.json` · Full panel + protected from moderation |
+| **Headmaster** | 3 | Discord-ID bans/unbans, large Galleon grants (>10k), world reset/PvP, staff management |
+| **Professor** | 2 | Teleports, revive, Galleons, flying brooms/gear, House Cup points, Force Re-Sort, spell grants, weather/time |
+| **Prefect** | 1 | Go To, Bring, Freeze/Unfreeze, Direct Notices, Warnings, Kick |
+
+## Included Modules
+
+1. **Players & Moderation**: Live student roster search, Vault & Coin Purse balances, Go To / Bring, Hogwarts landmark & X/Y/Z coordinate teleport, Freeze/Unfreeze (`player.hold` + `hmp-lib` input lock), Revive, Direct Owl-Post Notices, Warnings, Kick, timed/permanent online & offline Discord-ID Bans (`expiresAtMs` support), **Galleons & Banking** (`hmp-banking` Vault + `native:galleons` Coin Purse), **Flying Broom Granting** (`hmp-inventory`), Gear/Item Granting, and optional No-Clip bridge.
+2. **Houses & House Cup (`hmp-houses` + `hmp-sorting`)**: Live House Cup standings, point adjustments with optional global broadcast, direct House assignment/clearing, and **Force Re-Sort**.
+3. **Spells & Curriculum (`hmp-spells`)**: Live searchable spell catalog, per-spell grant/revoke, one-click curriculum packs, and personal grant clearing.
+4. **World & Server (`hmp-world` + `hmp-pvp`)**: Weather profiles, seasons, time presets, world reset, server-wide announcements, and Lethal PvP toggle.
+5. **Staff Roster & Audit Log**: Live Discord-ID staff management persisted atomically to `data/hmp-headmaster-staff.json`, Discord-ID bans in `data/hmp-headmaster-bans.json`, and bounded audit history in `data/hmp-headmaster-audit.json`.
+
+## Optional Resource Bridges
+
+- `dg-notify`: Routes toast alerts through your custom notification HUD when loaded (falls back to native chat/events automatically).
+- `dg-discord`: Mirrors in-game warnings, kicks, bans, unbans, PvP toggles, and staff roster changes to Discord audit webhooks cleanly without duplicate logs.
+- `hmp-academy`: Optional attendance/year integration hooks.
+
+## Installation
+
+1. Extract the archive into your ArcaneMP server root so you have:
    - `resources/hmp-headmaster/`
    - `data/hmp-headmaster.json`
 2. Install dependencies, verify types, and build inside `resources/hmp-headmaster`:
@@ -36,39 +51,20 @@
    npm run typecheck
    npm run build
    ```
-3. Set your Root Admin Discord ID in `data/hmp-headmaster.json`:
-   ```json
-   {
-     "rootAdminDiscordIds": ["YOUR_17_TO_20_DIGIT_DISCORD_ID"]
-   }
-   ```
-   *(Tip: join your server and type `/hm myid` in chat to print your Discord ID.)*
-4. Restart your server and open the panel in-game with **`F6`**, **`/headmaster`**, or **`/hm`**.
+3. Configure `rootAdminDiscordIds` in `data/hmp-headmaster.json` if not set before export.
+4. Start/restart your server and press **`F6`** or run **`/headmaster`** (or **`/hm`**).
 
----
+## Chat Commands
 
-## 💬 Commands
+- `/headmaster` or `/hm` — Open the Headmaster Administration Panel
+- `/hm myid` — Print your detected Discord ID in chat
+- `/hm addadmin <discordId> <headmaster|professor|prefect> [Name]` — Add staff (Root Admin only)
+- `/hm removeadmin <discordId>` — Remove staff and revoke synced Core admin grade (Root Admin only)
 
-| Command | Access | Description |
-| :--- | :--- | :--- |
-| `/headmaster` / `/hm` / `F6` | Staff | Open the Headmaster Console |
-| `/hm myid` | Everyone | Print your detected Discord ID |
-| `/hm addadmin <discordId> <headmaster\|professor\|prefect> [Name]` | Root Admin | Add staff member |
-| `/hm removeadmin <discordId>` | Root Admin | Remove staff member |
+## Cross-Resource Exports API
 
----
+Other Foundations resources can access Headmaster via `Imports.get("hmp-headmaster")`:
 
-## 🔌 Cross-Resource Exports
-
-```ts
-const headmaster = Imports.get("hmp-headmaster");
-// headmaster.staff.list() | staff.getRole(player) | staff.isStaff(player) | staff.rootDiscordIds()
-// headmaster.bans.list() | bans.checkDiscordId(id) | bans.kick(...) | bans.ban(...) | bans.unban(...)
-// headmaster.audit.recent(limit)
-```
-
----
-
-## 📄 License
-
-MIT
+- `staff.list()`, `staff.getRole(player)`, `staff.isStaff(player)`, `staff.rootDiscordIds()`
+- `bans.list()`, `bans.checkDiscordId(discordId)`, `bans.kick({ targetId, reason, actorName, actorDiscordId })`, `bans.ban(...)`, `bans.unban({ discordId, banId, actorName, actorDiscordId })`
+- `audit.recent(limit)`

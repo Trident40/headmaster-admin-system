@@ -1,0 +1,204 @@
+{
+  "$schema": "https://github.com/arcane-mp/foundations/hmp-headmaster.schema.json",
+  "enabled": true,
+  "commands": {
+    "primary": "headmaster",
+    "short": "hm"
+  },
+  "openHotkey": "F6",
+  "rootAdminDiscordIds": [],
+  "syncCoreAdminGroup": true,
+  "broadcastHousePoints": true,
+  "announceGlobalBans": false,
+  "auditRetentionLimit": 250,
+  "seedStaff": [],
+  "landmarks": [
+    {
+      "id": "great-hall",
+      "name": "Great Hall Dais",
+      "region": "Hogwarts Castle",
+      "x": 367850,
+      "y": -417920,
+      "z": -80120
+    },
+    {
+      "id": "central-hall",
+      "name": "Central Hall Fountain",
+      "region": "Hogwarts Castle",
+      "x": 362110,
+      "y": -414500,
+      "z": -80840
+    },
+    {
+      "id": "transfiguration-courtyard",
+      "name": "Transfiguration Courtyard",
+      "region": "Hogwarts Grounds",
+      "x": 356420,
+      "y": -410280,
+      "z": -81420
+    },
+    {
+      "id": "quidditch-pitch",
+      "name": "Quidditch Pitch",
+      "region": "Hogwarts Grounds",
+      "x": 332800,
+      "y": -435100,
+      "z": -83200
+    },
+    {
+      "id": "hogsmeade-square",
+      "name": "Hogsmeade Town Square",
+      "region": "Hogsmeade",
+      "x": 421500,
+      "y": -362400,
+      "z": -82950
+    },
+    {
+      "id": "forbidden-forest",
+      "name": "Forbidden Forest Edge",
+      "region": "Highlands",
+      "x": 378200,
+      "y": -372600,
+      "z": -84600
+    }
+  ],
+  "spellPacks": [
+    {
+      "id": "year-1",
+      "name": "Year 1 Essentials",
+      "description": "Lumos, Revelio, Reparo, Levioso, Accio, Wingardium Leviosa",
+      "spells": [
+        "Lumos",
+        "Revelio",
+        "Reparo",
+        "Levioso",
+        "Accio",
+        "WingardiumLeviosa"
+      ]
+    },
+    {
+      "id": "dueling-club",
+      "name": "Dueling Club Kit",
+      "description": "Expelliarmus, Levioso, Accio, Depulso, Incendio, Confringo, Glacius",
+      "spells": [
+        "Expelliarmus",
+        "Levioso",
+        "Accio",
+        "Depulso",
+        "Incendio",
+        "Confringo",
+        "Glacius"
+      ]
+    },
+    {
+      "id": "owl-mastery",
+      "name": "All Standard Spells",
+      "description": "Every non-unforgivable utility, control, force, and damage spell",
+      "spells": [
+        "Lumos",
+        "Revelio",
+        "Reparo",
+        "Disillusionment",
+        "WingardiumLeviosa",
+        "Alohomora",
+        "Levioso",
+        "Glacius",
+        "ArrestoMomentum",
+        "Transformation",
+        "Accio",
+        "Depulso",
+        "Descendo",
+        "Flipendo",
+        "Incendio",
+        "Expelliarmus",
+        "Confringo",
+        "Diffindo",
+        "Bombarda"
+      ]
+    },
+    {
+      "id": "unforgivables",
+      "name": "Unforgivable Curses",
+      "description": "Crucio, Imperio, and Avada Kedavra (Restricted)",
+      "spells": [
+        "Crucio",
+        "Imperio",
+        "AvadaKedavra"
+      ]
+    }
+  ],
+  "quickGearItems": [
+    {
+      "id": "Back_001_Basic",
+      "label": "House School Robe"
+    },
+    {
+      "id": "Back_002_Rare",
+      "label": "Prefect House Cloak"
+    },
+    {
+      "id": "Outfit_002_Basic",
+      "label": "Hogwarts Uniform"
+    },
+    {
+      "id": "Head_034_Basic",
+      "label": "Pointed Wizard Hat"
+    }
+  ],
+  "brooms": [
+    {
+      "id": "native:broommoontrimmer",
+      "label": "Moon Trimmer"
+    },
+    {
+      "id": "native:broomyewweaver",
+      "label": "Yew Weaver"
+    },
+    {
+      "id": "native:broomwindwisp",
+      "label": "Wind Wisp"
+    },
+    {
+      "id": "native:broomemberdash",
+      "label": "Ember Dash"
+    },
+    {
+      "id": "native:broomlicketyswift",
+      "label": "Lickety Swift"
+    },
+    {
+      "id": "native:broombrightspark",
+      "label": "Bright Spark"
+    },
+    {
+      "id": "native:broomnightdancer",
+      "label": "Night Dancer"
+    },
+    {
+      "id": "native:broomwildfire",
+      "label": "Wildfire"
+    },
+    {
+      "id": "native:broomsilverarrow",
+      "label": "Silver Arrow"
+    }
+  ],
+  "weatherProfiles": [
+    "Clear",
+    "PartlyCloudy",
+    "Overcast",
+    "LightRain",
+    "Rain",
+    "Thunderstorm",
+    "Fog",
+    "LightSnow",
+    "Snow",
+    "Blizzard"
+  ],
+  "seasons": [
+    "Spring",
+    "Summer",
+    "Autumn",
+    "Winter"
+  ]
+}
